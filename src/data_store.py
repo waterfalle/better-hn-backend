@@ -11,18 +11,10 @@ Explanation of initial_object:
     - The value is a dictionary, with all the properties of the Item
     - see more info on https://github.com/HackerNews/API
 
-"ranked_order" (list of ints):
-    - list of the item id's in `stories` in sorted order
-
-"last_modified" (int):
-    - Timestamp of the most recent time at which `stories` was modified.
-
 '''
 
 initial_object = {
-    "stories":          {},
-    "ranked_order":     [],
-    "last_modified":    0
+    "stories":  [],
 }
 
 class Datastore:
@@ -36,8 +28,8 @@ class Datastore:
         if not isinstance(store, dict):
             raise TypeError('store must be of type dictionary')
         self.store = store
-        with open('database.p', 'wb') as FILE:
-            pickle.dump(self.store, FILE)
+        # with open('database.p', 'wb') as FILE:
+        #     pickle.dump(self.store, FILE)
 
 print('Loading Datastore...')
 
