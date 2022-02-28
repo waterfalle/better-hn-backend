@@ -5,16 +5,14 @@ data_store.py
 
 Explanation of initial_object:
 
-"stories" (dictionary):
-    - Is a dictionary of dictionaries which contains up to the top 500 stories on Hacker News.
-    - The key is the id of the Hacker News `Item` (guaranteed to be unique integers).
-    - The value is a dictionary, with all the properties of the Item
+"stories" (list):
+    - Is a list of dictionaries which contains up to the top 500 stories on Hacker News.
+    - items in stories are sorted in descending order based on the item's score.
     - see more info on https://github.com/HackerNews/API
-
 '''
 
 initial_object = {
-    "stories":  [],
+    "stories":  []
 }
 
 class Datastore:

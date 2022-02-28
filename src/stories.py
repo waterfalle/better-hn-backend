@@ -1,7 +1,6 @@
 import asyncio
 import httpx
 from operator import itemgetter
-from threading import Thread
 from src.data_store import data_store
 
 # CONSTANTS
@@ -11,7 +10,7 @@ NO_ERROR = 200
 def update_stories_v1():
     store = data_store.get()
     # get the top stories and their contents from Hacker News API
-    top_stories = asyncio.run(get_top_stories_v1())
+    top_stories = asyncio.run(download_top_stories_v1())
     # sort in descending order based on the story's score
     top_stories.sort(key=itemgetter("score"), reverse=True)
     # replace the old copy with the new copy
@@ -19,7 +18,7 @@ def update_stories_v1():
     data_store.set(store)
     return
 
-async def get_top_stories_v1():
+async def download_top_stories_v1():
     '''
     Asynchronously gets the content of the top 500 Hacker News `Item`s.
     This is much faster than using requests synchronously:
@@ -72,5 +71,6 @@ def get_stories_v1(num_stories):
     # check that num_stories is valid
     assert (1 <= num_stories <= 500)
     # return the specified number of stories
-    return stories[:num_stories]
-
+    return {
+        "stories":  stories[:num_stories]
+    }
