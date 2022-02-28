@@ -1,14 +1,15 @@
-import pickle
 import threading
 import time
 from json import dumps
 from flask import Flask, request
+from flask_cors import CORS
 from src.stories import get_stories_v1, update_stories_v1
 from src.data_store import data_store
 
 PORT = 8080
 
 APP = Flask(__name__)
+CORS(APP)
 
 @APP.route("/stories", methods=["GET"])
 def get_stories():
@@ -25,12 +26,7 @@ def updater():
         time.sleep(300)
 
 if __name__ == "__main__":
-    # try:
-    #     with open('database.p', 'rb') as FILE:
-    #         store = pickle.load(FILE)
-    #         data_store.set(store)
-    # except FileNotFoundError:
-    #     data_store.__init__
+    # initialise data_store
     data_store.__init__
     # create thread for updater()
     thread = threading.Thread(target=updater).start()

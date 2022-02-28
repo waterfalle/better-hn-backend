@@ -8,6 +8,19 @@ HN_TOP_STORIES_URL = "https://hacker-news.firebaseio.com/v0/topstories.json"
 NO_ERROR = 200
 
 def update_stories_v1():
+    '''
+    Updates the data_store["stories"] by using download_top_stories_v1()
+    Sorts the new stories in descending order based on the story's score.
+
+    Arguments:
+        None
+
+    Exceptions:
+        None
+
+    Return Value:
+        None
+    '''
     store = data_store.get()
     # get the top stories and their contents from Hacker News API
     top_stories = asyncio.run(download_top_stories_v1())
@@ -16,7 +29,6 @@ def update_stories_v1():
     # replace the old copy with the new copy
     store["stories"] = top_stories
     data_store.set(store)
-    return
 
 async def download_top_stories_v1():
     '''
@@ -65,7 +77,6 @@ def get_stories_v1(num_stories):
         - stories:
             list containing dicitionaries of the Items.
     '''
-
     store = data_store.get()
     stories = store["stories"]
     # check that num_stories is valid

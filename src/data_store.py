@@ -1,5 +1,3 @@
-import pickle
-
 '''
 data_store.py
 
@@ -26,10 +24,8 @@ class Datastore:
         if not isinstance(store, dict):
             raise TypeError('store must be of type dictionary')
         self.store = store
-        # with open('database.p', 'wb') as FILE:
-        #     pickle.dump(self.store, FILE)
 
-print('Loading Datastore...')
+print('Loading Datastore 😁 ...')
 
 global data_store
 data_store = Datastore()
