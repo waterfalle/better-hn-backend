@@ -2,14 +2,10 @@ import threading
 import time
 from json import dumps
 from flask import Flask, request
-from flask_cors import CORS
 from src.stories import get_stories_v1, update_stories_v1
 from src.data_store import data_store
 
-PORT = 8080
-
 APP = Flask(__name__)
-CORS(APP)
 
 @APP.route("/stories", methods=["GET"])
 def get_stories():
@@ -30,6 +26,6 @@ if __name__ == "__main__":
     data_store.__init__
     # create thread for updater()
     thread = threading.Thread(target=updater).start()
-    APP.run(port=PORT)
+    APP.run()
 
 
