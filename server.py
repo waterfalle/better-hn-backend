@@ -25,9 +25,12 @@ def updater():
 
 if __name__ == "__main__":
     # initialise data_store
+    print("one")
     data_store.__init__
     # create thread for updater()
+    print("two")
     thread = threading.Thread(target=updater).start()
+    print("three")
     APP.run()
 
 
