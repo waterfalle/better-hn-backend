@@ -25,7 +25,8 @@ if __name__ == "__main__":
     # initialise data_store
     data_store.__init__
     # create thread for updater()
-    thread = threading.Thread(target=updater).start()
+    # thread = threading.Thread(target=updater).start()
+    update_stories_v1()
     APP.run()
 
 
