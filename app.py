@@ -1,10 +1,12 @@
 from json import dumps
 from flask import Flask, request
+from flask_cors import CORS
 from apscheduler.schedulers.background import BackgroundScheduler
 from src.stories import get_stories_v1, update_stories_v1
 from src.data_store import data_store
 
 APP = Flask(__name__)
+CORS(APP)
 
 # below code was taken from 
 # https://stackoverflow.com/questions/21214270/how-to-schedule-a-function-to-run-every-hour-on-flask
