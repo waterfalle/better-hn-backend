@@ -18,19 +18,14 @@ def updater():
     the update_stories_v1() function to update the top stories.
     '''
     while True:
-        print("hello")
         update_stories_v1()
-        print("there")
         time.sleep(300)
 
 if __name__ == "__main__":
     # initialise data_store
-    print("one")
     data_store.__init__
     # create thread for updater()
-    print("two")
     thread = threading.Thread(target=updater).start()
-    print("three")
     APP.run()
 
 
