@@ -18,7 +18,9 @@ def updater():
     the update_stories_v1() function to update the top stories.
     '''
     while True:
+        print("hello")
         update_stories_v1()
+        print("there")
         time.sleep(300)
 
 if __name__ == "__main__":
