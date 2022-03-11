@@ -16,6 +16,11 @@ sched.add_job(update_stories_v1,'interval',minutes=5)
 sched.start()
 # end of taken code
 
+@APP.before_first_request
+def before_first_request():
+    update_stories_v1()
+# run before first request after server start-up
+
 @APP.route("/stories", methods=["GET"])
 def get_stories():
     num_stories = int(request.args.get('num_stories'))
