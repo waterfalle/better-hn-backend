@@ -24,6 +24,16 @@ def update_stories_v1():
     store = data_store.get()
     # get the top stories and their contents from Hacker News API
     top_stories = asyncio.run(download_top_stories_v1())
+
+    # remove unecessary fields from each Item (descendants, kids etc)
+    for story in top_stories:
+        # specify "n/a" so that an exception is not raised if a key
+        # doesn't exist
+        story.pop("descendants", "n/a")
+        story.pop("kids", "n/a")
+        story.pop("type", "n/a")
+        # don't need type as it will always be of type "story"
+
     # sort in descending order based on the story's score
     top_stories.sort(key=itemgetter("score"), reverse=True)
     # replace the old copy with the new copy
